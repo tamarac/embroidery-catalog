@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProdutsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,20 @@ class CreateProdutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('produts', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('type_id');
-            $table->string('name', 100)->nullable();
-            $table->text('description')->nullable();
-            $table->text('material_used')->nullable();
+            $table->string('name', 100);
+            $table->text('description');
             $table->double('price')->nullable();
             $table->double('cost_price')->nullable();
             $table->timestamps();
         });
 
-        Schema::table('produts', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->foreign('type_id')
-                ->on('types')
-                ->references('id');
+                ->references('id')
+                ->on('types');
 
             $table->index('type_id');
         });
@@ -40,10 +39,10 @@ class CreateProdutsTable extends Migration
      */
     public function down()
     {
-        Schema::table('produts', function (Blueprint $table) {
-            $table->dropForeign('type_id');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['type_id']);
             $table->dropIndex('type_id');
         });
-        Schema::dropIfExists('produts');
+        Schema::dropIfExists('products');
     }
 }
