@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.9",
         "laravel/framework": "^6.2",
+        "laravel/horizon": "^3.6",
         "laravel/tinker": "^2.0",
         "symfony/translation": "4.3.8"
     },
