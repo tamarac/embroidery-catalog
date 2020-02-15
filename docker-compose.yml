@@ -41,6 +41,15 @@ services:
       catalog-network:
         ipv4_address: 172.18.0.4
 
+  catalog-redis:
+    image: redis:alpine
+    container_name: catalog-redis
+    volumes:
+      - ./:/data
+    networks:
+      catalog-network:
+        ipv4_address: 172.18.0.5
+
 networks:
   catalog-network:
     external: true

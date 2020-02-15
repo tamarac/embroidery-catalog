@@ -17,7 +17,7 @@ class ProductService
 
     public function show(int $productId)
     {
-        return $this->product->findOrFail($productId);
+        return $this->product->with(['productMaterials', 'type'])->findOrFail($productId);
     }
 
     public function get()
@@ -34,7 +34,7 @@ class ProductService
     {
         $product = $this->product->findOrFail($productId);
         
-        return $product->create($params);
+        return $product->update($params);
     }
 
     public function mostExpensiveProduct()

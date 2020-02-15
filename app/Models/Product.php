@@ -9,10 +9,25 @@ class Product extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 
+        'name',
         'description',
         'type_id',
         'price',
         'cost_price',
     ];
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    public function productMaterials()
+    {
+        return $this->belongsToMany(
+            Material::class,
+            'product_materials',
+            'product_id',
+            'material_id'
+        );
+    }
 }

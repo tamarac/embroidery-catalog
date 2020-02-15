@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateProduct;
 use App\Services\Product\ProductService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -18,11 +18,14 @@ class ProductController extends Controller
         return app(ProductService::class)->get();
     }
 
-    public function create(CreateProduct $request)
+    public function create(Request $request)
     {
-        $validated = $request->validated();
-        var_dump($validated);
-        return app(ProductService::class)->create($request);
+        return app(ProductService::class)->create($request->all());
+    }
+
+    public function update($productId, Request $request)
+    {
+        return app(ProductService::class)->update($productId, $request->all());
     }
 
     public function mostExpensiveProduct()
@@ -30,4 +33,3 @@ class ProductController extends Controller
         return app(ProductService::class)->mostExpensiveProduct();
     }
 }
-  
