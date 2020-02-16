@@ -41,4 +41,16 @@ class ProductService
     {
         return $this->product->max('price');
     }
+
+    public function calcCostPrice($productId)
+    {
+        $productMaterials = $this->product->find($productId)->productMaterials->sum('price');
+       
+        return ($productMaterials * 0.10) + $productMaterials;
+    }
+
+    public function calcPrice($costPrice)
+    {       
+        return ($costPrice * 0.50) + $costPrice;
+    }
 }

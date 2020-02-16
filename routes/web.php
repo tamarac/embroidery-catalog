@@ -9,9 +9,3 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/product/{productId}', 'Product\ProductController@show');
-Route::get('/products', 'Product\ProductController@get');
-Route::get('/product/mostExpensive', 'Product\ProductController@mostExpensiveProduct');
-Route::put('/product/{productId}', 'Product\ProductController@update');
-Route::post('/product', 'Product\ProductController@create');
-Route::post('/product/productMaterials', 'Product\ProductMaterialController@createUsedMaterials');

@@ -32,4 +32,9 @@ class ProductController extends Controller
     {
         return app(ProductService::class)->mostExpensiveProduct();
     }
+
+    public function calcCostPrice($productId)
+    {
+        return app(ProductService::class)->calcCostPrice($productId);
+    }
 }
