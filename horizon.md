@@ -1,6 +1,6 @@
-#Horizon e dependencias.
+# Horizon e dependencias.
 
-Instalar 
+## Instalar e configurar Redis
 - `compose require predis/predis`
 
 Colocar as envs do redis 
@@ -17,7 +17,7 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 ```
 
-Instalar o horizon 
+## Instalar o horizon 
 - `composer require laravel/horizon` 
 - `php artisan horizon:install` 
 
