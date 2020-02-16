@@ -10,7 +10,7 @@ In the system it is possible to make the operations of creation, editing, produc
  - `docker-compose up -d`
  - `php artisan migrate --seed`
 
-## ROTAS:
+## Endpoints:
 ACTION |            ROUTE             |                                    FIELDS                                     |         RETURN
 ------ | ---------------------------- | ----------------------------------------------------------------------------- | ----------------------
 GET    | `/product/{productId}`       | Int productId                                                                 | Product Object
