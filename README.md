@@ -12,7 +12,7 @@ O contexto de produto e aplicado de forma gen'erica e pode ser utilizado de vari
  - `php artisan migrate --seed`
 
 ## ROTAS:
-ACTION |            ROUTE             |                                    FIELDS                                     |         Return
+ACTION |            ROUTE             |                                    FIELDS                                     |         RETURN
 ------ | ---------------------------- | ----------------------------------------------------------------------------- | ----------------------
 GET    | `/product/{productId}`       | Int productId                                                                 | Product Object
 GET    | `/products`                  | -                                                                             | Product Object List
