@@ -44,13 +44,13 @@ class ProductService
 
     public function calcCostPrice($productId)
     {
-        $productMaterials = $this->product->find($productId)->productMaterials->sum('price');
+        $totalPriceByMaterialList = $this->product->find($productId)->productMaterials->sum('price');
        
-        return ($productMaterials * 0.10) + $productMaterials;
+        return ($totalPriceByMaterialList * 0.10) + $totalPriceByMaterialList;
     }
 
     public function calcPrice($costPrice)
-    {       
+    {
         return ($costPrice * 0.50) + $costPrice;
     }
 }
