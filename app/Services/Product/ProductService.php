@@ -33,7 +33,7 @@ class ProductService
     public function update(int $productId, array $params)
     {
         $product = $this->product->findOrFail($productId);
-        
+
         return $product->update($params);
     }
 
@@ -44,8 +44,10 @@ class ProductService
 
     public function calcCostPrice($productId)
     {
-        $totalPriceByMaterialList = $this->product->find($productId)->productMaterials->sum('price');
-       
+        $totalPriceByMaterialList = $this->product->find($productId)
+            ->productMaterials
+            ->sum('price');
+
         return ($totalPriceByMaterialList * 0.10) + $totalPriceByMaterialList;
     }
 
