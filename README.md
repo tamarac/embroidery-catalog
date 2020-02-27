@@ -11,6 +11,7 @@ In the system it is possible to make the operations of creation, editing, produc
  - `php artisan migrate --seed`
 
 ## Endpoints:
+
 ACTION |            ROUTE             |                                    FIELDS                                     |         RETURN
 ------ | ---------------------------- | ----------------------------------------------------------------------------- | ----------------------
 GET    | `/product/{productId}`       | Int productId                                                                 | Product Object
