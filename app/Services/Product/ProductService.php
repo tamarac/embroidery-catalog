@@ -17,7 +17,12 @@ class ProductService
 
     public function show(int $productId)
     {
-        return $this->product->with(['productMaterials', 'type'])->findOrFail($productId);
+        return $this->product->with(
+            [
+                'productMaterials',
+                'type',
+            ]
+        )->findOrFail($productId);
     }
 
     public function get()
@@ -42,7 +47,7 @@ class ProductService
         return $this->product->max('price');
     }
 
-    public function calcCostPrice($productId)
+    public function c($productId)
     {
         $totalPriceByMaterialList = $this->product->find($productId)
             ->productMaterials
