@@ -13,9 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/*Route::middleware('auth:api')->get(
+    '/user', function (Request $request) {
+        return $request->user();
+    }
+);*/
 Route::middleware('guest')->post('/register', 'Auth\RegisterController@create');
 Route::middleware('guest')->get('/product/{productId}', 'Product\ProductController@show');
 Route::middleware('guest')->get('/products', 'Product\ProductController@get');
