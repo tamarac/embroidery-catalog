@@ -47,7 +47,7 @@ class ProductService
         return $this->product->max('price');
     }
 
-    public function c($productId)
+    public function calcCostPrice($productId)
     {
         $totalPriceByMaterialList = $this->product->find($productId)
             ->productMaterials

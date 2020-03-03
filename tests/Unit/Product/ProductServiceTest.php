@@ -40,6 +40,7 @@ class ProductServiceTest extends TestCase
     {
         // Arange
         $product = factory(Product::class)->create();
+        $product->load('type', 'productMaterials');
 
         // Act
         $show = app(ProductService::class)->show($product->id);
