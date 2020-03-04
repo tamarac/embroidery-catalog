@@ -7,6 +7,7 @@ In the system it is possible to make the operations of creation, editing, produc
  - PHP 7.2
 
 ## Run project
+ - `sudo docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/24 catalog-network`
  - `docker-compose up -d`
  - `php artisan migrate --seed`
 
