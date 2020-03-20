@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProduct;
 use App\Services\Product\ProductService;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,9 @@ class ProductController extends Controller
         return app(ProductService::class)->get();
     }
 
-    public function create(Request $request)
+    public function create(CreateProduct $request)
     {
-        return app(ProductService::class)->create($request->all());
+        return app(ProductService::class)->create($request->validated());
     }
 
     public function update($productId, Request $request)
