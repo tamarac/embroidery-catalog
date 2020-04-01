@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
-use App\Services\ProductMaterialService;
+use App\Services\Product\ProductMaterialService;
 use Illuminate\Http\Request;
 
 class ProductMaterialController extends Controller

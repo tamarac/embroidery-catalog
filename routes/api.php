@@ -18,15 +18,15 @@ use Illuminate\Http\Request;
         return $request->user();
     }
 );*/
-Route::middleware('guest')->post('/register', 'Auth\RegisterController@create');
-Route::middleware('guest')->get('/product/{productId}', 'Product\ProductController@show');
-Route::middleware('guest')->get('/products', 'Product\ProductController@get');
-Route::middleware('guest')->get('/product/{productId}/calc', 'Product\ProductController@calcCostPrice');
-Route::middleware('guest')->get('/product/mostExpensive', 'Product\ProductController@mostExpensiveProduct');
-Route::middleware('guest')->put('/product/{productId}', 'Product\ProductController@update');
-Route::middleware('guest')->post('/product', 'Product\ProductController@create');
-Route::middleware('guest')->post('/product/productMaterials', 'Product\ProductMaterialController@createUsedMaterials');
+Route::post('/register', 'Auth\RegisterController@create');
+Route::get('/product/{productId}', 'Product\ProductController@show');
+Route::get('/products', 'Product\ProductController@get');
+Route::get('/product/{productId}/calc', 'Product\ProductController@calcCostPrice');
+Route::get('/product/mostExpensive', 'Product\ProductController@mostExpensiveProduct');
+Route::put('/product/{productId}', 'Product\ProductController@update');
+Route::post('/product', 'Product\ProductController@create');
+Route::post('/product/productMaterials', 'Product\ProductMaterialController@createUsedMaterials');
 //type list
-Route::middleware('guest')->get('/types', 'Product\TypeController@get');
+Route::get('/types', 'Product\TypeController@get');
 // material list
-Route::middleware('guest')->get('/materials', 'Product\MaterialController@get');
+Route::get('/materials', 'Product\MaterialController@get');
