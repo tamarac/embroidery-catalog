@@ -38,8 +38,9 @@ class ProductService
     public function update(int $productId, array $params)
     {
         $product = $this->product->findOrFail($productId);
-
-        return $product->update($params);
+        $product->update($params);
+        
+        return $product;
     }
 
     public function mostExpensiveProduct()
