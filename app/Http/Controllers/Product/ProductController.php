@@ -21,7 +21,6 @@ class ProductController extends Controller
 
     public function create(CreateProduct $request)
     {
-        dd('oi');
         return app(ProductService::class)->create($request->validated());
     }
 
