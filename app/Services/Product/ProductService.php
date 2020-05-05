@@ -27,7 +27,7 @@ class ProductService
 
     public function get()
     {
-        return $this->product->all();
+        return $this->product->orderBy('name')->get();
     }
 
     public function create(array $params)

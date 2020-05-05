@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProduct;
+use App\Http\Requests\UpdateProduct;
 use App\Services\Product\ProductService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function get()
     {
-        return app(ProductService::class)->get();
+        return response()->json(['data' => app(ProductService::class)->get()->toArray()], 200);
     }
 
     public function create(CreateProduct $request)
@@ -24,9 +24,9 @@ class ProductController extends Controller
         return app(ProductService::class)->create($request->validated());
     }
 
-    public function update($productId, Request $request)
+    public function update($productId, UpdateProduct $request)
     {
-        return app(ProductService::class)->update($productId, $request->all());
+        return app(ProductService::class)->update($productId, $request->validated());
     }
 
     public function mostExpensiveProduct()
