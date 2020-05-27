@@ -30,3 +30,6 @@ Route::post('/product/productMaterials', 'Product\ProductMaterialController@crea
 Route::get('/types', 'Product\TypeController@get');
 // material list
 Route::get('/materials', 'Product\MaterialController@get');
+Route::put('/materials/{id}', 'Product\MaterialController@update');
+Route::post('/materials', 'Product\MaterialController@create');
+Route::delete('/materials/{id}', 'Product\MaterialController@delete');

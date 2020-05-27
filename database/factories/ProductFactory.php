@@ -12,6 +12,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->text,
         'type_id'     => factory(Type::class)->create()->id,
         'price'       => null,
-        'cost_price'       => null
+        'cost_price'  => null
     ];
 });
