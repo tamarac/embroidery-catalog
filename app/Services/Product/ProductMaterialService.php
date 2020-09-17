@@ -1,19 +1,31 @@
 <?php
 
+/**
+ * This file contains context of ProductMateral Model.
+ */
 namespace App\Services\Product;
 
 use App\Models\ProductMaterial;
 
 class ProductMaterialService 
 {
-    public function __construct(ProductMaterial $productMaterial)
+    /**
+     * ProductMaterialService Constructor
+     *
+     * @param ProductMaterial $productMaterial
+     */
+    public function __construct(ProductMaterial $productMaterial) 
     {
         $this->productMaterial = $productMaterial;
-
-        return $this;
     }
 
-    public function create(array $params)
+    /**
+     * Create ProductMaterial
+     *
+     * @param array $params
+     * @return ProductMaterial
+     */
+    public function create(array $params): ProductMaterial
     {
         return $this->productMaterial->create($params);
     }

@@ -43,7 +43,9 @@ class ProductMaterialObserver
 
     public function calc($productMaterial)
     {
-        $costPrice = app(ProductService::class)->calcCostPrice($productMaterial->product_id);
+        $costPrice = app(ProductService::class)
+            ->calcCostPrice($productMaterial->product_id);
+
         $price = app(ProductService::class)->calcPrice($costPrice);
 
         app(ProductService::class)->update($productMaterial->product_id, [

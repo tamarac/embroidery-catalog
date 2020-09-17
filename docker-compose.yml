@@ -9,19 +9,15 @@ services:
     volumes:
       - ./:/catalog
       - ./nginx/site.conf:/etc/nginx/conf.d/site.conf
-    networks:
-      catalog-network:
-        ipv4_address: 172.18.0.2
     links:
       - php
+
   php:
     build: php-fpm
     container_name: "catalog-php"
     volumes:
       - ./:/catalog
-    networks:
-      catalog-network:
-        ipv4_address: 172.18.0.3
+      - ./:/var/www/html
     links:
       - db
 
@@ -37,19 +33,9 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: catalog123
       MYSQL_ROOT_PASSWORD: catalog123
-    networks:
-      catalog-network:
-        ipv4_address: 172.18.0.4
 
   catalog-redis:
     image: redis:alpine
     container_name: catalog-redis
     volumes:
       - ./:/data
-    networks:
-      catalog-network:
-        ipv4_address: 172.18.0.5
-
-networks:
-  catalog-network:
-    external: true

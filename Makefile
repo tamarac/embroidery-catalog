@@ -7,7 +7,7 @@ stop-mysql-local:
 	sudo /etc/init.d/mysql stop
 
 exec-mysql:
-	docker-compose exec db mysql -h db
+	docker-compose exec db catalog-mysql -h db
 
 artisan:
 	docker-compose exec php php artisan $@

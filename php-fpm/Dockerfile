@@ -1,21 +1,27 @@
-FROM 7.2-fpm-alpine
+FROM php:7.3-fpm-alpine
 
-RUN apk --update add wget curl git php php-curl php-openssl php-json php-phar php-dom && rm /var/cache/apk/*
+RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
+  && apk del build-dependencies build-base openssl-dev autoconf \
+  && rm -rf /var/cache/apk/*
 
-RUN set -ex \
-    && apk add --no-cache libpq libmagic libmcrypt libmcrypt-dev icu-dev \
-    && apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS \
-    && docker-php-ext-install bcmath intl mcrypt opcache pcntl pdo_mysql \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && apk del .phpize-deps
+RUN docker-php-ext-install pdo pdo_mysql
 
-RUN set -ex \
-    && sed -i -e "s/;request_terminate_timeout\s*=[^\n]*/request_terminate_timeout = 300/g" /usr/local/etc/php-fpm.d/www.conf \
-    && sed -i -e "s/pm.max_children\s*=[^\n]*/pm.max_children = 24/g" /usr/local/etc/php-fpm.d/www.conf \
-    && sed -i -e "s/pm.min_spare_servers\s*=[^\n]*/pm.min_spare_servers = 7/g" /usr/local/etc/php-fpm.d/www.conf \
-    && sed -i -e "s/pm.start_servers\s*=[^\n]*/pm.start_servers = 7/g" /usr/local/etc/php-fpm.d/www.conf \
-    && sed -i -e "s/pm.max_spare_servers\s*=[^\n]*/pm.max_spare_servers = 17/g" /usr/local/etc/php-fpm.d/www.conf \
-&& php-fpm --test
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli pdo_mysql
 
-EXPOSE 9000
+# Time Zone
+RUN echo "date.timezone=${PHP_TIMEZONE:-UTC}" > $PHP_INI_DIR/conf.d/date_timezone.ini
+
+# Register the COMPOSER_HOME environment variable
+ENV COMPOSER_HOME /composer
+
+# Add global binary directory to PATH and make sure to re-export it
+ENV PATH /composer/vendor/bin:$PATH
+
+# Allow Composer to be run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Setup the Composer installer
+RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
+  && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
+  && php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
+  && php /tmp/composer-setup.php --install-dir=/usr/bin --filename=composer
