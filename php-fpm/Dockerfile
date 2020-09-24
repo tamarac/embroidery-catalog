@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
   && apk del build-dependencies build-base openssl-dev autoconf \
