@@ -2,19 +2,20 @@
 In the system it is possible to make the operations of creation, editing, product listing and product recovery by ID. The product context is applied in a generic way and can be used in various ways, but in this system we have the Seeders of types and materials containing items for manual work such as embroidery, of which the name's project was given.
 
 Obs: In the Product, We can register with price end cost_price, but when inserting itens on route `/product/productMaterials` the prices are calculate automaticale.
+
 ## Project Configs
  - Laravel 6
  - docker and docker-compose
- - PHP 7.2
+ - PHP 7.4
 
 ## Run project
- - `sudo docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/24 catalog-network`
+ - `docker exec -it catalog-php composer install`
  - `docker-compose up -d`
- - `php artisan migrate --seed`
+ - `docker exec -it catalog-php php artisan migrate --seed`
 
 ## Run Tests
 - Create database `testing`;
-- Execute: `php vendor/bin/phpunit`.
+- Execute: `docker exec -it catalog-php php vendor/bin/phpunit`.
 
 ## Endpoints:
 
